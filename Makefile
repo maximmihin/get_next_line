@@ -11,3 +11,6 @@
 # **************************************************************************** #
 
 
+all	:
+	gcc get_next_line_utils.c get_next_line.h get_next_line.c main_test.c
+	./a.out tests/file3.txt

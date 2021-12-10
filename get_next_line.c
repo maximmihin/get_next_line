@@ -12,6 +12,45 @@
 
 #include "get_next_line.h"
 
+
+
+
+
+
+
+
+
+
+int	init_str_buf(char *str_buff)
+{
+	static char	buffer[BUFFER_SIZE + 1];
+	int have_str_buff;
+	size_t buff_size;
+
+
+	buff_size = ft_strlen(buffer);
+	if (!buff_size)
+		buff_size = BUFFER_SIZE;
+
+	str_buff = (char *)malloc(buff_size + 1);
+	if (!str_buff)
+		return (0);
+	printf("make str_buf\n");
+
+	ft_memcpy(str_buff, buffer, buff_size);
+	printf("str_buff1 = %s\n", str_buff);
+
+
+	have_str_buff = 1;
+	return (have_str_buff);
+}
+
+
+
+
+
+
+
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
@@ -29,6 +68,15 @@ char	*get_next_line(int fd)
 	find_end = 0;
 	find_enter = 0;
 
+
+	if (ft_strlen(buffer))
+	{
+		have_str_buff = init_str_buf(str_buff);
+		if (!have_str_buff)
+			return (NULL);
+	}
+
+
 	while(!find_enter && !find_end)
 	{
 		read(fd, buffer, BUFFER_SIZE);
@@ -40,18 +88,14 @@ char	*get_next_line(int fd)
 
 			if(!have_str_buff)
 			{
-				//make func str_init
-				str_buff = (char *)malloc(BUFFER_SIZE + 1);
-				if (!str_buff)
+				have_str_buff = init_str_buf(str_buff);
+				if (!have_str_buff)
 					return (NULL);
-				printf("make str_buf\n");
-				have_str_buff = 1;
-
-				ft_memcpy(str_buff, buffer, BUFFER_SIZE);
-				printf("str_buff1 = %s\n", str_buff);
 			}
-			else if (find_enter || find_end)
+			else
 			{
+//				str_buff = ft_realloc(str_buff, BUFFER_SIZE * i + 1,
+//									  (BUFFER_SIZE * (i + 1)) + 1);
 				str_buff = ft_realloc(str_buff, BUFFER_SIZE * i + 1,
 									  (BUFFER_SIZE * (i + 1)) + 1);
 
@@ -62,6 +106,11 @@ char	*get_next_line(int fd)
 			}
 		printf("-----------------------------\n");
 	}
+
+
+
+
+
 
 	//don't forget '\0' in an and (1 line in file)
 	len_str = (char *)ft_memchr(str_buff, '\n', BUFFER_SIZE * i) - str_buff;
@@ -79,6 +128,11 @@ char	*get_next_line(int fd)
 
 	printf("buffer4 (fin) = %s\n", buffer);
 	free(str_buff);
+
+
+
+
+
 
 
 

@@ -11,13 +11,17 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 
 	str = get_next_line(fd);
-
 	printf("\n%s\n", str);
-/*
-	char c;
- 	while (read(fd, &c, 1) && c != '\n')
-		write(1, &c, 1);
-*/
+
+	str = get_next_line(fd);
+	printf("\n%s\n", str);
+
+	str = get_next_line(fd);
+	printf("\n%s\n", str);
+
+	str = get_next_line(fd);
+	printf("\n%s\n", str);
+
 	close(fd);
 	free(str);
 	return (0);

@@ -8,19 +8,25 @@ int main(int argc, char **argv)
 	int fd;
 	char *str;
 
+	printf("*** start main ***\n");
 	fd = open(argv[1], O_RDONLY);
 
 	str = get_next_line(fd);
-	printf("\n%s\n", str);
+	printf("%s\n", str);
+	printf("*****************************************\n");
 
 	str = get_next_line(fd);
-	printf("\n%s\n", str);
+	printf("%s\n", str);
+	printf("*****************************************\n");
 
 	str = get_next_line(fd);
-	printf("\n%s\n", str);
+	printf("%s\n", str);
+	printf("*****************************************\n");
 
 	str = get_next_line(fd);
-	printf("\n%s\n", str);
+	printf("%s\n", str);
+	printf("*****************************************\n");
+
 
 	close(fd);
 	free(str);

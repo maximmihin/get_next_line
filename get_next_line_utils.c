@@ -60,12 +60,26 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (n > i)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}
+
 char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
 	printf("oldlen = %d\n", oldlen);
 	printf("newlen = %d\n", newlen);
-	char *box;
-	int counter;
+	char	*box;
+	int		counter;
 
 	counter = 0;
 	box = (char*) malloc(sizeof(char) * newlen);

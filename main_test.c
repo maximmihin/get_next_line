@@ -27,6 +27,10 @@ int main(int argc, char **argv)
 	printf("%s\n", str);
 	printf("*****************************************\n");
 
+	str = get_next_line(fd);
+	printf("%s\n", str);
+	printf("*****************************************\n");
+
 
 	close(fd);
 	free(str);

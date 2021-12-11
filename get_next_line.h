@@ -10,19 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+#ifndev GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#define BUFFER_SIZE 3
+# include <stdlib.h>
+# include <unistd.h>
 
-size_t	ft_strlen(const char *str);
+# ifdef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
 
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
-
-void	ft_bzero(void *s, size_t n);
-
+size_t	ft_strlen(const char *str);
 char	*ft_realloc(char *buff, int oldlen, int newlen);
 
-char	*get_next_line(int fd);
+#endif

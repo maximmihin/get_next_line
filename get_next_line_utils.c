@@ -12,16 +12,6 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*dest;
@@ -60,24 +50,20 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-void	ft_bzero(void *s, size_t n)
+size_t	ft_strlen(const char *str)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	size_t	i;
 
 	i = 0;
-	ptr = (unsigned char *)s;
-	while (n > i)
-	{
-		ptr[i] = 0;
+	while (str[i])
 		i++;
-	}
+	return (i);
 }
 
 char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
-	printf("oldlen = %d\n", oldlen);
-	printf("newlen = %d\n", newlen);
+//	printf("oldlen = %d\n", oldlen);
+//	printf("newlen = %d\n", newlen);
 	char	*box;
 	int		counter;
 

@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 3
 
 size_t	ft_strlen(const char *str);
 

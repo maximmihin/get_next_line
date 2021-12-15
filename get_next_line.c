@@ -161,6 +161,7 @@ char 	*buffer_preproc(char *buffer, char **find_enter, int *len_str)
 {
 	char 		*str;
 	//int 		len_str;
+	char		c;
 
 	if (buffer[BUFFER_SIZE] == '!')
 		return	(NULL);
@@ -172,9 +173,13 @@ char 	*buffer_preproc(char *buffer, char **find_enter, int *len_str)
 
 	//1 and 2
 	//find(find_enter, buffer, BUFFER_SIZE);
+	printf("find_enter 1 = %p\n", *find_enter);
 	*find_enter = (char *)ft_memchr(buffer, '\n', BUFFER_SIZE);
+	printf("find_enter 2 = %p\n", *find_enter);
 	if (!*buffer || *find_enter == &buffer[BUFFER_SIZE - 1])
 	{
+		printf("CASE 1\n");
+		*find_enter = NULL;
 		str = (char *) malloc(BUFFER_SIZE + 1);
 		return (str);
 	}
@@ -182,20 +187,26 @@ char 	*buffer_preproc(char *buffer, char **find_enter, int *len_str)
 	//3
 	if (*find_enter)
 	{
+		printf("CASE 3\n");
 		*len_str = &buffer[BUFFER_SIZE] - *find_enter - 1;
+		printf("len_str = %d\n", *len_str);
 		str = (char *) malloc(*len_str + BUFFER_SIZE + 1);
-		ft_memcpy(str, find_enter + 1, *len_str);
+		ft_memcpy(str, *find_enter + 1, *len_str);
 
-		*find_enter = NULL;
+		c = *(*find_enter + 1);
+		printf("**str = %c\n", c);
+
+		*find_enter = (NULL);
 	}
 
 	//4
-	//find(find_enter, str, len_str);
-	*find_enter = (char *)ft_memchr(str, '\n', *len_str);
+//	find(find_enter, &str, *len_str);
+	*find_enter = (char *)ft_memchr(str, '\n', BUFFER_SIZE);
 	if (*find_enter)
 	{
+		printf("CASE 4\n");
 		//find(find_enter, buffer, len_str);
-		*find_enter = (char *)ft_memchr(buffer, '\n', *len_str);
+		*find_enter = (char *)ft_memchr(buffer, '\n', BUFFER_SIZE);
 		**find_enter = 's';
 	}
 
@@ -216,9 +227,13 @@ char	*get_next_line(int fd)
 	sbf = 0;
 	i = 0;
 
+	printf("buffer cont b = %s\n", buffer);
+	//printf("str_buff cont b = %s\n", str_buff);
 	str_buff = buffer_preproc(buffer, &find_enter, &sbf);
 	if (!str_buff)
 		return (NULL);
+	printf("buffer cont a = %s\n", buffer);
+	printf("str_buff cont a = %s\n", str_buff);
 	printf("BP 1\n");
 
 	while(!buffer[BUFFER_SIZE] && !find_enter)
@@ -227,28 +242,32 @@ char	*get_next_line(int fd)
 		read(fd, buffer, BUFFER_SIZE);
 		find (&find_enter, buffer, BUFFER_SIZE);
 		printf("buffer = %s\n", buffer);
-		ft_memcpy(&str_buff[BUFFER_SIZE * i], buffer, BUFFER_SIZE);
+		ft_memcpy(&str_buff[BUFFER_SIZE * i + sbf], buffer, BUFFER_SIZE);
 		//to del
 		//str_buff[BUFFER_SIZE * i + 1] = '\0';
 		printf("str_buff = %s\n", str_buff);
 
+		i++;
 		//here bug in len. First time oldlen != B_S * i + 1 + sbf)
 		str_buff = ft_realloc (str_buff, BUFFER_SIZE * i + 1 + sbf,
-							  BUFFER_SIZE *
-		(i + 1) +
-														 1 + sbf);
+							  BUFFER_SIZE * (i + 1) + 1 + sbf);
+		printf("str_buff (ar) = %s\n", str_buff);
 		printf("BP 2\n");
 		printf("find_enter = %p\n", find_enter);
 
-		i++;
+		//i++;
 	}
 
-	/*find_enter = */ft_memchr(str_buff, '\n', BUFFER_SIZE * (i - 1));
-	printf("find_enter = %p\n", find_enter);
+	find_enter = ft_memchr(str_buff, '\n', BUFFER_SIZE * (i + 1) + sbf);
+	printf("find_enter2 = %p\n", find_enter);
 	*find_enter = '\0';
+
+
 
 	printf("BP 3\n");
 	printf("str_buff = %s\n", str_buff);
+
+
 
 
 	return (str_buff);

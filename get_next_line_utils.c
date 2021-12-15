@@ -62,8 +62,8 @@ size_t	ft_strlen(const char *str)
 
 char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
-//	printf("oldlen = %d\n", oldlen);
-//	printf("newlen = %d\n", newlen);
+	printf("oldlen = %d\n", oldlen);
+	printf("newlen = %d\n", newlen);
 	char	*box;
 	int		counter;
 
@@ -79,4 +79,18 @@ char	*ft_realloc(char *buff, int oldlen, int newlen)
 	}
 	free(buff);
 	return (box);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (n > i)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 }

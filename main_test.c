@@ -14,25 +14,18 @@ int main(int argc, char **argv)
 	str = get_next_line(fd);
 	printf("%s\n", str);
 	printf("*****************************************\n");
-
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	printf("*****************************************\n");
-
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	printf("*****************************************\n");
-
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	printf("*****************************************\n");
-
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	printf("*****************************************\n");
+/*
+	do
+	{
+		str = get_next_line(fd);
+		printf("%s\n", str);
+		printf("*****************************************\n");
+	} while (*str);
+*/
 
 
 	close(fd);
-	free(str);
+	//fix it!
+	//	free(str);
 	return (0);
 }

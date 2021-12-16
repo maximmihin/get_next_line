@@ -149,10 +149,20 @@ char	*get_next_line(int fd)
 
 void	find(char **find_enter, char *some_buffer, size_t len)
 {
-	*find_enter = (char *)ft_memchr(some_buffer, '\n', len);
+	char *find_end;
 
-	if(ft_memchr(some_buffer, '\0', len))
+	find_end = NULL;
+
+	*find_enter = (char *)ft_memchr(some_buffer, '\n', len);
+	printf("@@@@@@@@@@@@@@@@@@@@@@\n");
+
+	find_end = ft_memchr(some_buffer, '\0', len);
+	printf("find_end = %p\n", find_end);
+	if(find_end)
+	{
+		printf("@ @@@ @\n");
 		some_buffer[len] = '!';
+	}
 }
 
 
@@ -240,8 +250,15 @@ char	*get_next_line(int fd)
 	{
 
 		read(fd, buffer, BUFFER_SIZE);
+
+
+
 		find (&find_enter, buffer, BUFFER_SIZE);
 		printf("buffer = %s\n", buffer);
+		printf("* buffer[BUFFER_SIZE] = %c\n", buffer[BUFFER_SIZE]);
+
+
+
 		ft_memcpy(&str_buff[BUFFER_SIZE * i + sbf], buffer, BUFFER_SIZE);
 		//to del
 		//str_buff[BUFFER_SIZE * i + 1] = '\0';

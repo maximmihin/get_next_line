@@ -62,8 +62,8 @@ size_t	ft_strlen(const char *str)
 
 char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
-	printf("oldlen = %d\n", oldlen);
-	printf("newlen = %d\n", newlen);
+//	printf("oldlen = %d\n", oldlen);
+//	printf("newlen = %d\n", newlen);
 	char	*box;
 	int		counter;
 

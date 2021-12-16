@@ -7,11 +7,10 @@ int main(int argc, char **argv)
 {
 	int fd;
 	char *str;
-//	char *tstr;
-	int len;
 	int i = 7;
 
-	printf("*** start main ***\n");
+	if (argc)
+		printf("*** start main ***\n");
 	fd = open(argv[1], O_RDONLY);
 /*
 	str = get_next_line(fd);
@@ -19,10 +18,9 @@ int main(int argc, char **argv)
 	printf("%s\n", str);
 	printf("*****************************************\n");
 
-
-	tstr = get_next_line(fd);
+	str = get_next_line(fd);
 	printf("*****************************************\n");
-	printf("%s\n", tstr);
+	printf("%s\n", str);
 	printf("*****************************************\n");
 */
 	do

@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		printf("%s\n", str);
 		printf("*****************************************\n");
 		i--;
-	} while (*str && i);
+	} while (str && i);
 
 
 	close(fd);

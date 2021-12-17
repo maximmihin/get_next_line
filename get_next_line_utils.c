@@ -71,6 +71,7 @@ char	*ft_realloc(char *buff, int oldlen, int newlen)
 	box = (char*) malloc(sizeof(char) * newlen);
 	if (!box)
 		return (NULL);
+	ft_bzero(box, newlen);
 	while(oldlen != 0)
 	{
 		box[counter] = buff[counter];

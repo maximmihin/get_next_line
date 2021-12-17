@@ -35,6 +35,6 @@ int main(int argc, char **argv)
 
 	close(fd);
 	//fix it!
-	//	free(str);
+	free(str);
 	return (0);
 }

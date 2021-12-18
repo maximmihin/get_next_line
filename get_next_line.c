@@ -101,7 +101,8 @@ char	*get_next_line(int fd)
 		r = read(fd, buffer, BUFFER_SIZE);
 		if (r > 0)
 		{
-			ft_memcpy(&str_buff[BUFFER_SIZE * i], buffer, BUFFER_SIZE + 1);
+			ft_memcpy(&str_buff[BUFFER_SIZE * i + sbf], buffer, BUFFER_SIZE +
+			1);
 //			printf("str_buff = |%s|\n", str_buff);
 			if (r < BUFFER_SIZE)
 			{
@@ -156,6 +157,6 @@ char	*get_next_line(int fd)
 
 
 	}
-	printf("BP 666\n");
+//	printf("BP 666\n");
 	return (str_buff);
 }

@@ -29,12 +29,12 @@ int main(int argc, char **argv)
 		printf("*****************************************\n");
 		printf("%s\n", str);
 		printf("*****************************************\n");
+		free(str);
 		i--;
 	} while (str && i);
 
 
 	close(fd);
 	//fix it!
-	free(str);
 	return (0);
 }

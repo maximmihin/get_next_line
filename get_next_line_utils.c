@@ -60,15 +60,58 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (n > i)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}
+
 char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
 	char	*box;
-	int		counter;
 
-	counter = 0;
+//	printf("oldlen = %d\n", oldlen);
+//	printf("newlen = %d\n", newlen);
+	if (newlen == 0)
+	{
+		free(buff);
+		return (NULL);
+	}
+	else if (!buff)
+	{
+		buff = (char *) malloc(newlen);
+		return (buff);
+	}
+	else if (newlen <= oldlen)
+	{
+		return (buff);
+	}
+	else
+	{
+		box = (char *) malloc(newlen);
+		if (box)
+		{
+			ft_bzero(box, newlen);
+			ft_memcpy(box, buff, oldlen);
+			free(buff);
+		}
+		return (box);
+	}
+/*
 	box = (char*) malloc(sizeof(char) * newlen);
 	if (!box)
+	{
+		free(buff);
 		return (NULL);
+	}
 	ft_bzero(box, newlen);
 	while(oldlen != 0)
 	{
@@ -92,4 +135,5 @@ void	ft_bzero(void *s, size_t n)
 		ptr[i] = 0;
 		i++;
 	}
+*/ //first_var
 }

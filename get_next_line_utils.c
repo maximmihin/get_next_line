@@ -50,16 +50,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 void	ft_bzero(void *s, size_t n)
 {
 	size_t			i;
@@ -78,8 +68,6 @@ char	*ft_realloc(char *buff, int oldlen, int newlen)
 {
 	char	*box;
 
-//	printf("oldlen = %d\n", oldlen);
-//	printf("newlen = %d\n", newlen);
 	if (newlen == 0)
 	{
 		free(buff);
@@ -91,9 +79,7 @@ char	*ft_realloc(char *buff, int oldlen, int newlen)
 		return (buff);
 	}
 	else if (newlen <= oldlen)
-	{
 		return (buff);
-	}
 	else
 	{
 		box = (char *) malloc(newlen);
@@ -105,35 +91,4 @@ char	*ft_realloc(char *buff, int oldlen, int newlen)
 		}
 		return (box);
 	}
-/*
-	box = (char*) malloc(sizeof(char) * newlen);
-	if (!box)
-	{
-		free(buff);
-		return (NULL);
-	}
-	ft_bzero(box, newlen);
-	while(oldlen != 0)
-	{
-		box[counter] = buff[counter];
-		counter++;
-		oldlen--;
-	}
-	free(buff);
-	return (box);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*ptr;
-
-	i = 0;
-	ptr = (unsigned char *)s;
-	while (n > i)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-*/ //first_var
 }

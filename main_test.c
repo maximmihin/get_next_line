@@ -7,34 +7,23 @@ int main(int argc, char **argv)
 {
 	int fd;
 	char *str;
-	int i = 7;
+	int i = 1;
 
 	if (argc)
 		printf("*** start main ***\n");
 	fd = open(argv[1], O_RDONLY);
-/*
-	str = get_next_line(fd);
-	printf("*****************************************\n");
-	printf("%s\n", str);
-	printf("*****************************************\n");
 
-	str = get_next_line(fd);
-	printf("*****************************************\n");
-	printf("%s\n", str);
-	printf("*****************************************\n");
-*/
 	do
 	{
 		str = get_next_line(fd);
-		printf("*****************************************\n");
+		printf("******************* %d **********************\n", i);
 		printf("%s\n", str);
-		printf("*****************************************\n");
-		i--;
-	} while (str && i);
+		printf("********************************************\n");
+		i++;
+	} while (str && i < 12);
 
 
 	close(fd);
 	free(str);
-	//fix it!
 	return (0);
 }

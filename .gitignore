@@ -55,4 +55,8 @@ CMakeLists.txt
 cmake-build-debug/
 .DS_Store
 gnlTester/
+gnl-war-machine-v2019/
+.idea/
+.idea/*
+
 

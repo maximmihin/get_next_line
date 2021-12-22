@@ -13,4 +13,4 @@
 
 all	:
 	gcc -Wall -Wextra -Werror get_next_line_utils.c get_next_line.h get_next_line.c main_test.c
-	./a.out tests/41_no_nl | cat -e
+	./a.out tests/multiple_line_no_nl | cat -e

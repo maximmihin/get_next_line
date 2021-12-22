@@ -17,7 +17,6 @@ char	*buffer_preproc(char *buffer)
 	char		*find_enter;
 	char 		*str_buff;
 	int 		len;
-	int 		len2;
 
 	find_enter = ft_strchr(buffer, '\n');
 	if (find_enter)
@@ -31,14 +30,25 @@ char	*buffer_preproc(char *buffer)
 	find_enter = ft_strchr(buffer, '\n');
 	if (find_enter)
 	{
-		len2 = find_enter - &buffer[0];
+		len = find_enter - &buffer[0];
 		if (find_enter == &buffer[0])
 			return(ft_substr("\n", 0, 1));
-		str_buff = ft_substr(buffer, 0, len2 + 1);
+		str_buff = ft_substr(buffer, 0, len + 1);
 	}
 	else
 		str_buff = ft_substr("\0", 0, 1);
 	return (str_buff);
+}
+
+char 	*str_ret_preproc(char *buffer)
+{
+	char 	*str_ret;
+
+	if (*buffer)
+		str_ret = ft_substr(buffer, 0, ft_strlen(buffer));
+	else
+		str_ret = ft_substr("\0", 0, 1);
+	return (str_ret);
 }
 
 char 	*ft_read(int fd, char *buffer)
@@ -48,13 +58,13 @@ char 	*ft_read(int fd, char *buffer)
 	int		buff_read;
 
 	buff_read = 1;
+	/*
 	if (*buffer)
-	{
 		str_ret = ft_substr(buffer, 0, ft_strlen(buffer));
-		buffer[0] = '\0';
-	}
 	else
 		str_ret = ft_substr("\0", 0, 1);
+	 */
+	str_ret = str_ret_preproc(buffer);
 	while(!ft_strchr(buffer, '\n') && buff_read > 0)
 	{
 		ft_bzero(buffer, BUFFER_SIZE);

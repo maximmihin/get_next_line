@@ -15,7 +15,7 @@
 | **External functs.** | read, malloc, free                                           |
 | **Description**      | Write a function which returns a line read from a file descriptor |
 
-
+For detailed information, refer to the **[subject of this project](https://github.com/maximmihin/get_next_line/blob/main/en.subject.pdf)**
 
 ## Usage
 
